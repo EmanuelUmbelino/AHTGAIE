@@ -9,25 +9,34 @@ public class CarController : MonoBehaviour {
     {
         moveState = "Go";
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag.Equals("Car"))
+        {
+            moveState = "DontGo";
+        }
+    }
+
+
     void OnTriggerStay2D(Collider2D col)
     {
         if (col.tag.Equals("Light"))
         {
             if (col.GetComponent<SpriteRenderer>().color.Equals(new Color(255, 0, 0)))
                 moveState = "DontGo";
+
             else if (col.GetComponent<SpriteRenderer>().color.Equals(new Color(0, 255, 0)))
                 moveState = "Go";
+
             else if (col.GetComponent<SpriteRenderer>().color.Equals(new Color(255, 255, 0)))
             {
                 moveState = "RUN";
                 StartCoroutine(Slow());
             }
-        } 
-        if (col.tag.Equals("Car"))
-        {
-            moveState = "DontGo";
         }
     }
+
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.tag.Equals("Car"))

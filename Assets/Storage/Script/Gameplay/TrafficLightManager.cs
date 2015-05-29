@@ -8,9 +8,18 @@ public class TrafficLightManager : MonoBehaviour {
 
 	void Start () 
     {
-        actualLight = "Red";
+        int random = Random.Range(0, 2);
         sprite = GetComponent<SpriteRenderer>();
-        sprite.color = new Color(255, 0, 0);
+        if (random.Equals(0))
+        {
+            actualLight = "Red";
+            sprite.color = new Color(255, 0, 0);
+        }
+        else
+        {
+            actualLight = "Green";
+            sprite.color = new Color(0, 255, 0);
+        }
 	}
     void OnMouseDown()
     {
