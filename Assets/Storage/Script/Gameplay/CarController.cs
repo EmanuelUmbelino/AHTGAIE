@@ -4,9 +4,13 @@ using System.Collections;
 public class CarController : MonoBehaviour {
 
     string moveState;
+    private SpriteRenderer sprite;
 
     void Start()
     {
+        sprite = GetComponent<SpriteRenderer>();
+        sprite.color = new Color(0, 0, 0);
+        sprite.color = new Color(Random.Range(0, 255), Random.Range(0, 255), Random.Range(0, 255));
         moveState = "Go";
     }
 

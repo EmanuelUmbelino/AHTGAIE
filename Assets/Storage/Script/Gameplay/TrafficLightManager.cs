@@ -3,23 +3,27 @@ using System.Collections;
 
 public class TrafficLightManager : MonoBehaviour {
 
+    public string inicialLight;
     private string actualLight;
     private SpriteRenderer sprite;
 
-	void Start () 
+	void Start ()
     {
-        int random = Random.Range(0, 2);
         sprite = GetComponent<SpriteRenderer>();
-        if (random.Equals(0))
+        if (inicialLight.Equals(null))
         {
-            actualLight = "Red";
-            sprite.color = new Color(255, 0, 0);
+            int random = Random.Range(0, 2);
+            if (random.Equals(0))
+            {
+                actualLight = "Red";
+            }
+            else
+            {
+                actualLight = "Green";
+            }
         }
         else
-        {
-            actualLight = "Green";
-            sprite.color = new Color(0, 255, 0);
-        }
+            actualLight = inicialLight;
 	}
     void OnMouseDown()
     {
@@ -28,18 +32,26 @@ public class TrafficLightManager : MonoBehaviour {
         else
         {
             actualLight = "Green";
-            sprite.color = new Color(0, 255, 0);
         }
     }
     IEnumerator ToRedLight()
     {
         actualLight = "Yellow";
-        sprite.color = new Color(255, 255, 0);
         yield return new WaitForSeconds(2);
         actualLight = "Red";
-        sprite.color = new Color(255, 0, 0);
     }
 	void FixedUpdate () 
     {
+        if (actualLight.Equals("Green"))
+            sprite.color = new Color(0, 255, 0);
+        else if (actualLight.Equals("Yellow"))
+            sprite.color = new Color(255, 255, 0);
+        else if (actualLight.Equals("Red"))
+            sprite.color = new Color(255, 0, 0);
+        else
+        {
+            actualLight = "Green";
+            sprite.color = new Color(0, 255, 0);
+        }
 	}
 }
