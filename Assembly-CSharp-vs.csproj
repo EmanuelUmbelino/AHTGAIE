@@ -51,7 +51,9 @@
      <Compile Include="Assets\Resources\Tiled2Unity\Scripts\Runtime\TiledMap.cs" />
      <Compile Include="Assets\Storage\Script\Gameplay\CameraController.cs" />
      <Compile Include="Assets\Storage\Script\Gameplay\CarController.cs" />
+     <Compile Include="Assets\Storage\Script\Gameplay\ChangerController.cs" />
      <Compile Include="Assets\Storage\Script\Gameplay\DestroyerBehaviour.cs" />
+     <Compile Include="Assets\Storage\Script\Gameplay\GameController.cs" />
      <Compile Include="Assets\Storage\Script\Gameplay\PersonBehaviour.cs" />
      <Compile Include="Assets\Storage\Script\Gameplay\SpawnManager.cs" />
      <Compile Include="Assets\Storage\Script\Gameplay\TrafficLightManager.cs" />
