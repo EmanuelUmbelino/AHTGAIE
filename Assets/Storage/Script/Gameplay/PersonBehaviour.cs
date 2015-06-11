@@ -4,6 +4,7 @@ using System.Collections;
 public class PersonBehaviour : MonoBehaviour {
 
     string moveState;
+    public Animator animation;
     void Start()
     {
         moveState = "Go";
@@ -46,12 +47,12 @@ public class PersonBehaviour : MonoBehaviour {
         if (moveState.Equals("Go"))
         {
             transform.Translate(Vector3.up * 2);
-            GetComponent<Animator>().SetBool("Moving", true);
+            animation.SetBool("Moving", true);
         }
         else
         {
             transform.Translate(new Vector3(0, 0, 0));
-            GetComponent<Animator>().SetBool("Moving", false);
+            animation.SetBool("Moving", false);
         }
 
     }
