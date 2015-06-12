@@ -46,7 +46,7 @@ public class PersonBehaviour : MonoBehaviour {
     {
         if (moveState.Equals("Go"))
         {
-            transform.Translate(Vector3.up * 2);
+            transform.Translate(Vector3.up * 100 * Time.deltaTime);
             animation.SetBool("Moving", true);
         }
         else
