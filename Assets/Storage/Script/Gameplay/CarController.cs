@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CarController : MonoBehaviour {
 
+	bool dye;
 	string moveState;		
 	int rotation;
 	int goYellow;
@@ -13,6 +14,7 @@ public class CarController : MonoBehaviour {
 
     void Start()
 	{
+		dye = false;
 		stressLvl = Random.Range (0, 31);
 		nextDirection = "";
         sprite.color = new Color(0, 0, 0);
@@ -57,7 +59,7 @@ public class CarController : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.tag.Equals("Light"))
+		if (col.tag.Equals("Light"))
         {
             if (col.GetComponent<SpriteRenderer>().color.Equals(new Color(255, 0, 0)))
 			{
@@ -91,6 +93,24 @@ public class CarController : MonoBehaviour {
             moveState = "Go";
         }
     }
+	void OnCollisionEnter2D(Collision2D col)
+	{
+		if (col.gameObject.tag.Equals("Car"))
+		{
+			dye = true;
+			GameController.acidentsTotal += 0.5f;
+			Destroy (this.gameObject);
+		}
+	}
+	IEnumerator Explode()
+	{
+		yield return new WaitForSeconds(0.4f);
+		sprite.enabled = false;
+		yield return new WaitForSeconds(0.4f);
+		sprite.enabled = true;
+		yield return new WaitForSeconds(0.4f);
+		Destroy (this.gameObject);
+	}
 	IEnumerator ToNull()
 	{
 		yield return new WaitForSeconds(0.5f);
@@ -104,9 +124,13 @@ public class CarController : MonoBehaviour {
     void Move()
     {
         if(moveState.Equals("Go"))
+		{
             transform.Translate(Vector3.right * 4);
+		}
         else if (moveState.Equals("DontGo"))
+		{
             transform.Translate(new Vector3(0,0,0));
+		}
         else
             transform.Translate(Vector3.right * 7);
 
@@ -155,7 +179,10 @@ public class CarController : MonoBehaviour {
 	}
 	void FixedUpdate () 
     {
-		StateRotation();
-        Move();
+		if(!dye)
+		{
+			StateRotation();
+	        Move();
+		}
 	}
 }
