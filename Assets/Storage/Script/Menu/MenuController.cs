@@ -2,38 +2,15 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class MenuController: MonoBehaviour {
+public class MenuController: MonoBehaviour 
+{
+    public void ActiveCanvas(GameObject canvasToActive)
+    { canvasToActive.SetActive(true); }
 
-	private GameObject Play;
-	private GameObject Options;
-	private GameObject Credits;
-	private GameObject Instructions;
-	private GameObject Back;
+    public void DesableCanvas(GameObject canvasToActive)
+    { canvasToActive.SetActive(false); }
 
-	void Start () 
-    {
-        if (Application.loadedLevel.Equals(0))
-        {
-            Play = GameObject.Find("TextPlay");
-            Options = GameObject.Find("TextOptions");
-            Credits = GameObject.Find("TextCredits");
-            Instructions = GameObject.Find("TextInstructions");
-        }
+    public void ChangeToScene(int scene)
+    { Application.LoadLevel(scene); }
 
-		if(Application.loadedLevel != 0 && Application.loadedLevel != 1) Back = GameObject.Find("TextBack");
-	}
-
-	void FixedUpdate () {
-		if(Application.loadedLevel.Equals(0)){
-			if (!Play.activeSelf)
-				Application.LoadLevel("Game");
-			else if(!Options.activeSelf)
-				Application.LoadLevel("Options");
-			else if(!Credits.activeSelf)
-				Application.LoadLevel("Credits");
-			else if(!Instructions.activeSelf)
-				Application.LoadLevel("Instructions");
-		}
-		if(Application.loadedLevel != 0 && Application.loadedLevel != 1 && !Back.activeSelf)Application.LoadLevel("Menu");
-	}
 }

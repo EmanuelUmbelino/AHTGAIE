@@ -59,7 +59,7 @@ public class CarController : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D col)
     {
-		if (col.tag.Equals("Light"))
+		if (col.tag.Equals("Light") || col.tag.Equals("LightVertical") || col.tag.Equals("LightHorizontal"))
         {
             if (col.GetComponent<SpriteRenderer>().color.Equals(new Color(255, 0, 0)))
 			{
