@@ -18,6 +18,8 @@ public class PersonBehaviour : MonoBehaviour {
     }
     void OnTriggerStay2D(Collider2D col)
     {
+        if (col.tag.Equals("Player"))
+            moveState = col.GetComponent<PersonBehaviour>().moveState;
         if (col.tag.Equals("Light"))
         {
             if (col.GetComponent<SpriteRenderer>().color.Equals(new Color(255, 0, 0)))
@@ -34,8 +36,7 @@ public class PersonBehaviour : MonoBehaviour {
             transform.eulerAngles = new Vector3(0, 0, 90);
         else if (col.tag.Equals("Right"))
             transform.eulerAngles = new Vector3(0, 0, 270);
-        else if(col.tag.Equals("Player"))
-                moveState = "DontGo";
+        
     }
     void OnTriggerExit2D(Collider2D col)
     {
@@ -46,17 +47,17 @@ public class PersonBehaviour : MonoBehaviour {
     {
         if (moveState.Equals("Go"))
         {
-            transform.Translate(Vector3.up * 100 * Time.deltaTime);
+            rigidbody2D.velocity = (transform.up * 4000 * Time.deltaTime);
             animationPlayer.SetBool("Moving", true);
         }
         else
         {
-            transform.Translate(new Vector3(0, 0, 0));
+            rigidbody2D.velocity = new Vector2(0,0);
             animationPlayer.SetBool("Moving", false);
         }
 
     }
-	void Update () {
+	void FixedUpdate () {
         Move();
 	}
 }

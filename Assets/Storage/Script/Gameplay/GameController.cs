@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class GameController : MonoBehaviour {
-
+	
+	public GameObject winCanvas;
 	public static int donePeople;
 	public static float acidentsTotal;
 	public int people;
@@ -37,10 +38,13 @@ public class GameController : MonoBehaviour {
 	void Update () {
 		childText.text = donePeople + "/" + people;
 		acidentText.text = acidentsTotal + "/" + maxAcidents;
-        if (donePeople.Equals(people))
-            print("YOU WIN");
+		if (donePeople.Equals(people))
+			winCanvas.SetActive(true);
 	}
-
-
-
+	void RestartScene()
+	{
+		Application.LoadLevel(Application.loadedLevel);
+	}
+	
+	
 }

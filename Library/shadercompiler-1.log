@@ -1,5 +1,13 @@
 Base path: C:/Program Files (x86)/Unity/Editor/Data
-Pipe name: \\.\pipe\UnityShaderCompiler-1-6428
+Pipe name: \\.\pipe\UnityShaderCompiler-1-3716
 Cmd: getPlatforms
-Cmd: preprocess
-  insize=2850 outsize=848 ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=2232 outsize=514 kw=DUMMY ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=2232 outsize=697 kw=PIXELSNAP_ON ok=1
+Cmd: compileSnippet
+  api=8 type=0 insize=2232 outsize=2966 kw=PIXELSNAP_ON ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=2232 outsize=656 kw=DUMMY ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=2232 outsize=529 kw=PIXELSNAP_ON ok=1

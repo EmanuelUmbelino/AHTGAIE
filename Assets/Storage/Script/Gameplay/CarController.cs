@@ -98,8 +98,9 @@ public class CarController : MonoBehaviour {
 		if (col.gameObject.tag.Equals("Car"))
 		{
 			dye = true;
-			GameController.acidentsTotal += 0.5f;
-			Destroy (this.gameObject);
+			if(Application.loadedLevel != 0)
+			   GameController.acidentsTotal += 0.5f;
+			StartCoroutine(Explode());
 		}
 	}
 	IEnumerator Explode()
